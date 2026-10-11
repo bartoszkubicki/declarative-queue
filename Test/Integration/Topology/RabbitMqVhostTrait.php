@@ -122,7 +122,7 @@ trait RabbitMqVhostTrait
         $status = (int)curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
         curl_close($curl);
 
-        return [$status, json_decode($response, true, 512, JSON_THROW_ON_ERROR)];
+        return [$status, $response === '' ? null : json_decode($response, true, 512, JSON_THROW_ON_ERROR)];
     }
 
     private function env(string $name, string $default): string
