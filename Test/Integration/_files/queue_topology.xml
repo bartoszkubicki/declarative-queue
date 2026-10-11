@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/topology.xsd">
+    <exchange name="mqi.entity" type="topic" connection="amqp">
+        <!-- bound to a queue declared in queue_declaration.xml, binding arguments are real binding arguments -->
+        <binding id="DeclaredEntity" topic="mqi.declared.#" destinationType="queue" destination="mqi_declared">
+            <arguments>
+                <argument name="binding-only" xsi:type="string">on-binding</argument>
+            </arguments>
+        </binding>
+        <!-- bound to a queue which is not declared, queue must not inherit the binding arguments -->
+        <binding id="UndeclaredEntity" topic="mqi.undeclared.#" destinationType="queue" destination="mqi_undeclared">
+            <arguments>
+                <argument name="x-message-ttl" xsi:type="number">1000</argument>
+                <argument name="x-dead-letter-exchange" xsi:type="string">mqi.dead_letter</argument>
+            </arguments>
+        </binding>
+    </exchange>
+</config>

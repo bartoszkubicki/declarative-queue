@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:BKubicki_DeclarativeQueue:etc/queue_declaration.xsd">
+    <queue name="mqi_work" connection="amqp">
+        <arguments>
+            <argument name="x-dead-letter-exchange" xsi:type="string">mqi.dead_letter</argument>
+        </arguments>
+    </queue>
+    <queue name="mqi_expiring" connection="amqp">
+        <arguments>
+            <argument name="x-dead-letter-exchange" xsi:type="string">mqi.dead_letter</argument>
+            <argument name="x-message-ttl" xsi:type="number">500</argument>
+        </arguments>
+    </queue>
+</config>

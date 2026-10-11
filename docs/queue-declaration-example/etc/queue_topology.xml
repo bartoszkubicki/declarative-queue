@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/topology.xsd">
+    <!-- Exchanges and bindings only, arguments of the queues are defined in queue_declaration.xml -->
+    <exchange name="example.exchange" type="topic" connection="amqp">
+        <!-- queue declared in queue_declaration.xml; the binding argument stays on the binding -->
+        <binding id="DeclaredQueueBinding" topic="declared.#" destinationType="queue"
+                 destination="example.declared">
+            <arguments>
+                <argument name="binding-only-argument" xsi:type="string">binding-value</argument>
+            </arguments>
+        </binding>
+        <!-- queue not declared in queue_declaration.xml: created plain, nothing is taken from the binding -->
+        <binding id="UndeclaredQueueBinding" topic="undeclared.#" destinationType="queue"
+                 destination="example.undeclared">
+            <arguments>
+                <argument name="x-message-ttl" xsi:type="number">1000</argument>
+            </arguments>
+        </binding>
+    </exchange>
+</config>

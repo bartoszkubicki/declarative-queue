@@ -1,0 +1,21 @@
+{
+    "name": "bkubicki/declarative-queue",
+    "description": "Explicit, declarative queue arguments for Magento's MessageQueue framework",
+    "require": {
+        "php": ">=8.1",
+        "magento/framework": "102.0.*||103.0.*",
+        "magento/framework-message-queue": "100.3.*||100.4.*",
+        "ext-curl": "*",
+        "ext-dom": "*"
+    },
+    "type": "magento2-module",
+    "license": "MIT",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "BKubicki\\DeclarativeQueue\\": ""
+        }
+    }
+}

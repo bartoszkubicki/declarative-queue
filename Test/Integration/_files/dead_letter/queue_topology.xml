@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/topology.xsd">
+    <exchange name="mqi.work" type="topic" connection="amqp">
+        <binding id="Work" topic="mqi.work.#" destinationType="queue" destination="mqi_work"/>
+        <binding id="Expiring" topic="mqi.expiring.#" destinationType="queue" destination="mqi_expiring"/>
+    </exchange>
+    <exchange name="mqi.dead_letter" type="topic" connection="amqp">
+        <binding id="DeadLetter" topic="#" destinationType="queue" destination="mqi_dead_letter"/>
+    </exchange>
+</config>
